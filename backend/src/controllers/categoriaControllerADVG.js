@@ -20,7 +20,7 @@ export const getADVG = async (req,res) => {
     try{
         const sql = await prismaADVG.categoria.findMany()
         if (sql){
-            return res.status(200).json(sql)
+            return res.status(200).json({data:sql})
         }
     }catch(error){
         console.error(error)
