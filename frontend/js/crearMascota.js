@@ -35,7 +35,7 @@ async function submitForm(){
     formData.append("fk_Genero",genero_id);
     formData.append("foto",foto);
 
-    const response = await fetch(`http://localhost:3000/api/mascotaADVG`,{
+    const response = await fetch(`http://10.4.20.71:3000/api/mascotaADVG`,{
         body : formData,
         method : "POST",
         headers : {
@@ -47,9 +47,10 @@ async function submitForm(){
 
     if(json.status != 201) console.log(json);
     else window.location.href = '/pages/home.html';
+    alert("mascota registrada")
 }
 
-const razasRes = await fetch(`http://localhost:3000/api/razaADVG`,{
+const razasRes = await fetch(`http://10.4.20.71:3000/api/razaADVG`,{
     headers : {
         'Authorization' : `Bearer ${localStorage.getItem("token")}`
     }
@@ -64,7 +65,7 @@ const races = await racesJson.data;
 document.getElementById("race_id").innerHTML += races.map((race) => (
     `<option value="${race.id}">${race.nombre.charAt(0).toUpperCase()+race.nombre.slice(1)}</option>`
 ))
-const categoriaRes = await fetch(`http://localhost:3000/api/categoriaADVG`,{
+const categoriaRes = await fetch(`http://10.4.20.71:3000/api/categoriaADVG`,{
     headers : {
         'Authorization' : `Bearer ${localStorage.getItem("token")}`
     }
@@ -80,7 +81,7 @@ document.getElementById("categoria_id").innerHTML += categorias.map((categoria) 
     `<option value="${categoria.id}">${categoria.nombre.charAt(0).toUpperCase()+categoria.nombre.slice(1)}</option>`
 ))
 
-const gendersRes = await fetch(`http://localhost:3000/api/generoADVG`,{
+const gendersRes = await fetch(`http://10.4.20.71:3000/api/generoADVG`,{
     headers : {
         'Authorization' : `Bearer ${localStorage.getItem("token")}`
     }

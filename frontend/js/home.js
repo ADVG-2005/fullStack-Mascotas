@@ -2,7 +2,7 @@ document.getElementById("data-display").innerHTML = '<h2 style="color:white;text
 
 async function getMascotasADVG(){
     try{
-        const response = await fetch(`http://localhost:3000/api/mascotaADVG/`,{
+        const response = await fetch(`http://10.4.20.71:3000/api/mascotaADVG/`,{
             headers : {
                 'Authorization' : `Bearer ${localStorage.getItem("token")}`
             }
@@ -31,7 +31,7 @@ document.getElementById("data-display").innerHTML = data.map((mascota) => {
         `
             <div class='mascota-contenedor' style='background-color:${count % 2 == 0 ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.7)' };'>
                 <div class='foto-div'>
-                    <img class='foto-mascota' src='http://localhost:3000/public/mascotas/${mascota.foto}' alt='pet-photo'>
+                    <img class='foto-mascota' src='http://10.4.20.71:3000/public/mascotas/${mascota.foto}' alt='pet-photo'>
                 </div>
                 <div class='nombre-contenedor'>
                     <p class='nombre-mascota'>${mascota.nombre}</p>
@@ -50,7 +50,7 @@ document.getElementById("data-display").innerHTML = data.map((mascota) => {
 window.deletePet = deletePet
 
 async function deletePet(id){
-    const response = await fetch(`http://localhost:3000/api/mascotaADVG/${id}`,{
+    const response = await fetch(`http://10.4.20.71:3000/api/mascotaADVG/${id}`,{
         method : "DELETE",
         headers : {
             "Authorization" : `Bearer ${localStorage.getItem("token")}`

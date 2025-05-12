@@ -21,7 +21,7 @@ async function loginADVG() {
 
         const data = { correo, contraseña }
 
-        const respuesta = await fetch(`http://localhost:3000/api/loginADVG`, {
+        const respuesta = await fetch(`http://10.4.20.71:3000/api/loginADVG`, {
             headers: {
                 'Content-Type': 'application/json'
             },

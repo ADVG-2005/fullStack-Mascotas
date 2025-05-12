@@ -1,0 +1,76 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo global del body */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor centrado */
+.contenedor-principal {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Caja de documentación */
+.contenedor-docs {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 800px;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+.titulo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+/* Ruta */
+.ruta {
+    font-family: monospace;
+    color: #3498db;
+}
+
+/* Tabla de endpoints (puedes añadir más estilos si tu JS genera tablas) */
+.tabla-endpoint {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.tabla-endpoint thead th {
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.tabla-endpoint td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-endpoint tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-endpoint tr:hover {
+    background-color: #e6f7ff;
+}

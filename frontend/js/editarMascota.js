@@ -1,6 +1,6 @@
 const parametros = new URLSearchParams(window.location.search);
 const mascotaId = parametros.get('mascota');
-const URL = "http://localhost:3000/api";
+const URL = "http://10.4.20.71:3000/api";
 
 window.enviarFormulario = enviarFormulario;
 
@@ -48,6 +48,7 @@ async function enviarFormulario() {
 
     if (resultado.status !== 200) console.log(resultado);
     else window.location.href = '/pages/home.html';
+    alert("Datos de la mascota actualizados")
 }
 
 // Cargar razas
@@ -109,8 +110,8 @@ const datosMascota = await resMascota.json();
 const mascota = datosMascota.data;
 
 document.getElementById("name").value = mascota.nombre;
-document.getElementById("race_id").value = mascota.raza_id;
-document.getElementById("categoria_id").value = mascota.categoria_id;
+document.getElementById("race_id").value = mascota.fk_Raza;
+document.getElementById("categoria_id").value = mascota.fk_Categoria;
 document.getElementById("estado").value = mascota.estado;
-document.getElementById("gender_id").value = mascota.genero_id;
-document.getElementById("foto-previa").src = `http://localhost:3000/public/mascotas/${mascota.foto}`;
+document.getElementById("gender_id").value = mascota.fk_Genero;
+document.getElementById("foto-previa").src = `http://10.4.20.71:3000/public/mascotas/${mascota.foto}`;

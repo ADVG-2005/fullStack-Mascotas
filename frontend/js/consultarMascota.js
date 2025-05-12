@@ -1,5 +1,5 @@
 document.getElementById("formulario-info").innerHTML = `<h2 style='color:white;text-align:center;'>Cargando...</h2>`;
-const API_URL = "http://localhost:3000/api"
+const API_URL = "http://10.4.20.71:3000/api"
 
 const urlParams = new URLSearchParams(window.location.search);
 const idMascota = urlParams.get('mascota');
@@ -27,7 +27,7 @@ if (!mascota) {
 document.getElementById("formulario-info").innerHTML = `
     <div style='display:flex; align-items:center; flex-direction:column;'>
         <div class='contenedor-foto'>
-            <img class='foto-mascota' src='http://localhost:3000/public/mascotas/${mascota.foto}' />
+            <img class='foto-mascota' src='http://10.4.20.71:3000/public/mascotas/${mascota.foto}' />
         </div>
         <div style='margin-top:64px'>
             <div class='seccion-info'>
