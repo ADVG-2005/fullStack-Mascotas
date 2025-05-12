@@ -1,0 +1,113 @@
+.marco {
+    position: relative;
+}
+
+.barra-nav {
+    margin: 15px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.titulo {
+    font-size: 20px;
+    color: white;
+}
+
+.cerrar-sesion {
+    position: absolute;
+    width: 8vw;
+    height: 8vw;
+    translate: 42vw 50%;
+    transition: all;
+    transition-duration: 200ms;
+}
+
+.cerrar-sesion:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+.btn-agregar {
+    display: block;
+    margin: 0 auto;
+    transition: all;
+    transition-duration: 200ms;
+}
+
+.btn-agregar:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+.mascota-contenedor {
+    box-sizing: border-box;
+    margin: 0 15px;
+    margin-top: 12px;
+    padding: 12px 0;
+    border-radius: 15px;
+    display: flex;
+}
+
+.foto-div {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.foto-mascota {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.nombre-contenedor {
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nombre-mascota {
+    color: rgb(44,70,116);
+    font-weight: 300;
+    margin: 0;
+}
+
+.raza-mascota {
+    color: rgb(57, 91, 150);
+    font-weight: 200;
+    margin: 0;
+}
+
+.opciones-contenedor {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin: 0 16px 0 auto;
+}
+
+.opcion {
+    transition: all;
+    transition-duration: 200ms;
+}
+
+.opcion:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+@media(min-width: 640px) {
+    .cerrar-sesion {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        translate: 45vw 50%;
+    }
+}

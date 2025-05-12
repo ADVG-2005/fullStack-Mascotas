@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="../css/home.css"/>
+    <link rel="icon" href="../assets/img/photo-lg-1.svg">
+    <script src="../scripts/config.js"></script>
+    <script src="../js/cerrarSesion.js" async></script>
+    <script src="../js/home.js" type="module" async></script>
+    <title>Best Friend | Home</title>
+</head>
+<body>
+    <div class="marco">
+        <div class="barra-nav">
+            <p class="titulo">Administrar mascotas</p>
+            <img onclick="cerrarSesion()" class="cerrar-sesion" src="/assets/img/btn-close.svg" alt="Cerrar sesión">
+        </div>
+        <img class="btn-agregar" src="../assets/img/btn-add.svg" alt="Agregar mascota" onclick="window.location.href = '/pages/crearMascota.html' ">
+        <div id="data-display">
+
+        </div>
+    </div>
+</body>
+</html>
