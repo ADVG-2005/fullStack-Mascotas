@@ -1,0 +1,67 @@
+.marco {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.fondo {
+    position: fixed;
+}
+
+.form-login {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 143%;
+}
+
+.error {
+    text-align: center;
+    color: white;
+}
+
+.entrada, .boton {
+    width: 85%;
+    border-radius: 20px;
+    padding: 10px 10px;
+    margin: 5px auto;
+}
+
+.entrada {
+    box-sizing: border-box;
+    opacity: 40%;
+}
+
+.boton {
+    background-color: rgb(44,70,116);
+    color: white;
+    border: 0;
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+@media(min-width : 640px) {
+    body {
+        height: 100vh;
+        overflow-y: hidden;
+    }
+    .marco {
+        height: 100vh;
+    }
+    .fondo {
+        position: absolute;
+        height: 100vh;
+        left: 0;
+    }
+    .form-login {
+        margin-top: 0;
+        margin-left: 420px;
+    }
+    .boton {
+        box-shadow: 3px 3px 10px black;
+    }
+}
