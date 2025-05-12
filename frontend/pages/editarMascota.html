@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/editar.css" />
+    <link rel="icon" href="../assets/img/photo-lg-1.svg" />
+    <script src="../js/cerrarSesion.js" async></script>
+    <script src="../js/editarMascota.js" type="module" async></script>
+    <title>Best Friend | Modificar Mascota</title>
+</head>
+<body>
+    <div class="contenedor-principal">
+        <div class="barra-navegacion">
+            <img onclick="window.location.href = '/pages/home.html'" class="boton-regresar" src="/assets/img/btn-back.svg" alt="Volver" />
+            <p class="titulo-pagina">Modificar Mascota</p>
+            <img onclick="cerrarSesion()" class="boton-cerrar-sesion" src="/assets/img/btn-close.svg" alt="Cerrar sesión" />
+        </div>
+        <form>
+            <div class="contenedor-imagen">
+                <img src="/assets/img/photo-lg-0.svg" id="foto-previa" alt="Foto actual" name="foto" class="imagen-previa" />
+                <input onchange="mostrarVistaPrevia()" type="file" id="foto" class="archivo-imagen" />
+            </div>
+            <input class="campo-texto" id="name" name="name" placeholder="Nombre" />
+            <error id="name.error"></error>
+
+            <select class="campo-texto" id="race_id" name="race_id">
+                <option value="">Seleccione Raza...</option>
+            </select>
+            <error id="race_id.error"></error>
+
+            <select class="campo-texto" id="gender_id" name="gender_id">
+                <option value="">Seleccione Género...</option>
+            </select>
+            <error id="gender_id.error"></error>
+
+            <select class="campo-texto" id="categoria_id" name="categoria_id">
+                <option value="">Seleccione una categoría...</option>
+            </select>
+            <error id="categoria_id.error"></error>
+
+            <select class="campo-texto" id="estado" name="estado">
+                <option value="">Seleccione un Estado...</option>
+                <option value="Adoptado">Adoptado</option>
+                <option value="Disponible">Disponible</option>
+            </select>
+            <error id="estado.error"></error>
+
+            <img src="/assets/img/btn-save.svg" alt="Guardar cambios" class="boton-guardar" onclick="enviarFormulario()" />
+        </form>
+    </div>
+</body>
+</html>
