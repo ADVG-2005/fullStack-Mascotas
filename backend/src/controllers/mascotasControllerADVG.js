@@ -1,34 +1,41 @@
 import { PrismaClient } from "@prisma/client";
 const prismaADVG = new PrismaClient()
-export const postADVG = async (req,res) => {
+export const postADVG = async (req, res) => {
     try {
-        const {id,nombre,estado,fk_Raza,fk_Categoria,foto,fk_Genero}=req.body
+        const { nombre, estado, fk_Raza, fk_Categoria, fk_Genero } = req.body;
+
+        const foto = req.file ? req.file.filename : null;
+
         const sql = await prismaADVG.mascota.create({
             data: {
-                id : id,
-                nombre : nombre,
-                estado : estado,
-                fk_Raza : fk_Raza,
-                fk_Categoria : fk_Categoria,
-                foto : foto,
-                fk_Genero : fk_Genero
+                nombre,
+                estado,
+                fk_Raza: parseInt(fk_Raza),
+                fk_Categoria: parseInt(fk_Categoria),
+                foto,
+                fk_Genero: parseInt(fk_Genero)
             }
-        })
-        if(sql){
-            return res.status(201).json({msg : "La mascota fue registrada correctamente",data:sql})
-        }
-    }
-    catch(error){
-        console.error(error)
-        return res.status(500).json({"msg" : "Error en el servidor"})
+        });
+
+        return res.status(201).json({ msg: "La mascota fue registrada correctamente", data: sql });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ msg: "Error en el servidor" });
     }
 }
 
 export const getADVG = async (req,res) => {
     try{
-        const sql = await prismaADVG.mascota.findMany()
+        const sql = await prismaADVG.mascota.findMany({
+            include:{
+                raza:true,
+                genero:true,
+                categoria:true
+            }
+        })
         if (sql){
-            return res.status(200).json(sql)
+            return res.status(200).json({data:sql})
         }
     }catch(error){
         console.error(error)
@@ -40,11 +47,17 @@ export const getOneADVG = async (req,res) => {
     try{
         const {id}=req.params
         const sql = await prismaADVG.mascota.findUnique({
-            where : {id : parseInt(id)},
+            where : {id : parseInt(id),
+            },
+            include:{
+                raza:true,
+                categoria:true,
+                genero : true
+            }
         })
 
         if (sql){
-            return res.status(200).json(sql)
+            return res.status(200).json({data:sql})
         }
         return res.status(404).json({msg : "No se encontro el ID"})
 
@@ -54,25 +67,42 @@ export const getOneADVG = async (req,res) => {
     }
 }
 
-export const putADVG = async (req,res) => {
-    try{
-        const {id} = req.params
-        const sql = await prismaADVG.mascota.update({
-            where : {id : parseInt(id)},
-            data : req.body
-        })
+export const putADVG = async (req, res) => {
+    try {
+        const { id } = req.params;
 
-        if (sql) {
-            return res.status(200).json({msg : "Mascota actualizada correctamente",sql})
+        const { nombre, estado, fk_Raza, fk_Categoria, fk_Genero } = req.body;
+
+        const foto = req.file ? req.file.filename : undefined;
+
+        const dataToUpdate = {
+            nombre,
+            estado,
+            fk_Raza: fk_Raza ? parseInt(fk_Raza) : undefined,
+            fk_Categoria: fk_Categoria ? parseInt(fk_Categoria) : undefined,
+            fk_Genero: fk_Genero ? parseInt(fk_Genero) : undefined,
+        };
+
+        if (foto) {
+            dataToUpdate.foto = foto;
         }
-    }catch(error){
-        console.error(error)
-        if (error.code == "P2025"){
-            return res.status(404).json({msg : "No se encontro el ID"})
+
+        const sql = await prismaADVG.mascota.update({
+            where: { id: parseInt(id) },
+            data: dataToUpdate,
+        });
+
+        return res.status(200).json({ msg: "Mascota actualizada correctamente", data: sql });
+
+    } catch (error) {
+        console.error(error);
+        if (error.code === "P2025") {
+            return res.status(404).json({ msg: "No se encontró el ID" });
         }
-        return res.status(500).json({msg : "Error en el servidor"})
+        return res.status(500).json({ msg: "Error en el servidor" });
     }
-}
+};
+
 
 export const deleteADVG = async (req,res) => {
     try{
