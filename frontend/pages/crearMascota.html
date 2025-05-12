@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="../css/crear.css"/>
+    <link rel="icon" href="../assets/img/photo-lg-1.svg">
+    <script src="../js/cerrarSesion.js" async></script>
+    <script src="../js/crearMascota.js" type="module" async></script>
+    <title>Best Friend | Crear</title>
+</head>
+<body>
+    <div class="marco-principal">
+        <div class="barra-navegacion">
+            <img onclick="window.location.href = '/pages/home.html'" class="boton-volver" src="/assets/img/btn-back.svg" alt="">
+            <p class="titulo-seccion">Adicionar Mascota</p>
+            <img onclick="cerrarSesion()" class="boton-cerrar-sesion" src="/assets/img/btn-close.svg" alt="">
+        </div>
+        <form>
+            <div class="contenedor-foto">
+                <img src="/assets/img/photo-lg-0.svg" id="photo-preview" alt="inputIconPhoto" name="photo" class="imagen-previa" />
+                <input onchange="displayPreview()" type="file" id="photo" class="input-archivo" />
+            </div>
+            <input class="input-texto" id="name" name="name" placeholder="Nombre" />
+            <error id="name.error"></error>
+            <select class="input-texto" id="race_id" name="race_id">
+                <option value="">Seleccione Raza...</option>
+            </select>
+            <error id="race_id.error"></error>
+            <select class="input-texto" id="gender_id" name="gender_id">
+                <option value="">Seleccione Género...</option>
+            </select>
+            <error id="gender_id.error"></error>
+            <select class="input-texto" id="categoria_id" name="categoria_id">
+                <option value="">Seleccione una categoría...</option>
+            </select>
+            <error id="categoria_id.error"></error>
+            <select class="input-texto" id="estado" name="estado">
+                <option value="">Seleccione un Estado...</option>
+                <option value="Adoptado">Adoptado</option>
+                <option value="Disponible">Disponible</option>
+            </select>
+            <error id="estado.error"></error>
+            <img src="/assets/img/btn-save.svg" alt="Botón Crear" class="boton-crear" onclick="submitForm()" />
+        </form>
+    </div>
+</body>
+</html>
