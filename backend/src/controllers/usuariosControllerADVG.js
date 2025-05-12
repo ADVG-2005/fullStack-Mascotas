@@ -1,14 +1,25 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+dotenv.config()
+
 const prismaADVG = new PrismaClient()
+
+
 export const postADVG = async (req,res) => {
     try {
         const {id,nombreCompleto,correo,contraseña}=req.body
+        
+        const saltRounds = 10
+        const passwordHash = await bcrypt.hash(contraseña, saltRounds)
+
         const sql = await prismaADVG.user.create({
             data: {
                 id : id,
                 nombreCompleto : nombreCompleto,
                 correo : correo,
-                contraseña : contraseña,
+                contraseña : passwordHash,
             }
         })
         if(sql){
@@ -18,6 +29,32 @@ export const postADVG = async (req,res) => {
     catch(error){
         console.error(error)
         return res.status(500).json({"msg" : "Error en el servidor"})
+    }
+}
+
+export const postLoginADVG = async(req,res) => {
+    try{
+        const {correo, contraseña} = req.body
+        const usuario = await prismaADVG.user.findUnique({
+            where : {correo}
+        })
+        if (!usuario) {
+            return res.status(404).json({msg : "Usuarios no encontrado"})
+        }
+
+        const passwordValid = await bcrypt.compare(contraseña, usuario.contraseña)
+        if (!passwordValid) {
+            return res.status(401).json({msg : "Contraseña incorrecta"})
+        }
+        const token = jwt.sign({
+            id : usuario.id,
+            correo : usuario.correo
+        },process.env.JWT_SECRET,{expiresIn : process.env.JWT_EXPIRE || "3h"})
+
+        return res.status(200).json({msg : "Login exitoso",data :token ,usuario :{nombre : usuario.nombreCompleto,correo : usuario.correo}})
+    }catch(error){
+        console.error(error)
+        return res.status(500).json({msg : "Error en el servidor"})
     }
 }
 
